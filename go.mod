@@ -3,7 +3,7 @@ module github.com/sentinel-official/hub
 go 1.16
 
 require (
-	github.com/cosmos/cosmos-sdk v0.42.5
+	github.com/cosmos/cosmos-sdk v1.0.0
 	github.com/gogo/protobuf v1.3.3
 	github.com/golang/protobuf v1.5.2
 	github.com/gorilla/mux v1.8.0
@@ -22,7 +22,6 @@ require (
 replace (
 	github.com/99designs/keyring => github.com/99designs/keyring v1.1.7-0.20210324095724-d9b6b92e219f
 	github.com/cosmos/cosmos-sdk => github.com/Freak12Techno/cosmos-sdk v1.0.0-sentinel
-	github.com/cosmos/cosmos-sdk/types => github.com/Freak12Techno/cosmos-sdk/types v1.0.0-sentinel
 	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
 	google.golang.org/grpc => google.golang.org/grpc v1.33.2
 )
