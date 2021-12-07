@@ -1,7 +1,6 @@
 package types
 
 import (
-	"fmt"
 	"time"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -37,64 +36,36 @@ var (
 
 func NodeKey(address hubtypes.NodeAddress) []byte {
 	v := append(NodeKeyPrefix, address.Bytes()...)
-	if len(v) != 1+sdk.AddrLen {
-		panic(fmt.Errorf("invalid key length %d; expected %d", len(v), 1+sdk.AddrLen))
-	}
-
 	return v
 }
 
 func ActiveNodeKey(address hubtypes.NodeAddress) []byte {
 	v := append(ActiveNodeKeyPrefix, address.Bytes()...)
-	if len(v) != 1+sdk.AddrLen {
-		panic(fmt.Errorf("invalid key length %d; expected %d", len(v), 1+sdk.AddrLen))
-	}
-
 	return v
 }
 
 func InactiveNodeKey(address hubtypes.NodeAddress) []byte {
 	v := append(InactiveNodeKeyPrefix, address.Bytes()...)
-	if len(v) != 1+sdk.AddrLen {
-		panic(fmt.Errorf("invalid key length %d; expected %d", len(v), 1+sdk.AddrLen))
-	}
-
 	return v
 }
 
 func GetActiveNodeForProviderKeyPrefix(address hubtypes.ProvAddress) []byte {
 	v := append(ActiveNodeForProviderKeyPrefix, address.Bytes()...)
-	if len(v) != 1+sdk.AddrLen {
-		panic(fmt.Errorf("invalid key length %d; expected %d", len(v), 1+sdk.AddrLen))
-	}
-
 	return v
 }
 
 func ActiveNodeForProviderKey(provider hubtypes.ProvAddress, address hubtypes.NodeAddress) []byte {
 	v := append(GetActiveNodeForProviderKeyPrefix(provider), address.Bytes()...)
-	if len(v) != 1+2*sdk.AddrLen {
-		panic(fmt.Errorf("invalid key length %d; expected %d", len(v), 1+2*sdk.AddrLen))
-	}
-
 	return v
 }
 
 func GetInactiveNodeForProviderKeyPrefix(address hubtypes.ProvAddress) []byte {
 	v := append(InactiveNodeForProviderKeyPrefix, address.Bytes()...)
-	if len(v) != 1+sdk.AddrLen {
-		panic(fmt.Errorf("invalid key length %d; expected %d", len(v), 1+sdk.AddrLen))
-	}
-
 	return v
 }
 
 func InactiveNodeForProviderKey(provider hubtypes.ProvAddress, address hubtypes.NodeAddress) []byte {
 	v := append(GetInactiveNodeForProviderKeyPrefix(provider), address.Bytes()...)
-	if len(v) != 1+2*sdk.AddrLen {
-		panic(fmt.Errorf("invalid key length %d; expected %d", len(v), 1+2*sdk.AddrLen))
-	}
-
 	return v
 }
 
@@ -104,33 +75,17 @@ func GetInactiveNodeAtKeyPrefix(at time.Time) []byte {
 
 func InactiveNodeAtKey(at time.Time, address hubtypes.NodeAddress) []byte {
 	v := append(GetInactiveNodeAtKeyPrefix(at), address.Bytes()...)
-	if len(v) != 1+29+sdk.AddrLen {
-		panic(fmt.Errorf("invalid key length %d; expected %d", len(v), 1+29+sdk.AddrLen))
-	}
-
 	return v
 }
 
 func AddressFromStatusNodeKey(key []byte) hubtypes.NodeAddress {
-	if len(key) != 1+sdk.AddrLen {
-		panic(fmt.Errorf("invalid key length %d; expected %d", len(key), 1+sdk.AddrLen))
-	}
-
 	return key[1:]
 }
 
 func AddressFromStatusNodeForProviderKey(key []byte) hubtypes.NodeAddress {
-	if len(key) != 1+2*sdk.AddrLen {
-		panic(fmt.Errorf("invalid key length %d; expected %d", len(key), 1+2*sdk.AddrLen))
-	}
-
-	return key[1+sdk.AddrLen:]
+	return key[1+29:]
 }
 
 func AddressFromStatusNodeAtKey(key []byte) hubtypes.NodeAddress {
-	if len(key) != 1+29+sdk.AddrLen {
-		panic(fmt.Errorf("invalid key length %d; expected %d", len(key), 1+29+sdk.AddrLen))
-	}
-
 	return key[1+29:]
 }
